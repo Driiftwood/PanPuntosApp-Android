@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center_horizontal"
+    android:background="#F5F7FA">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PAN, PUNTOS Y PREMIOS"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="#182B49"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Consulta de Puntos y Recompensas"
+        android:textSize="14sp"
+        android:textColor="#666666"
+        android:layout_marginBottom="32dp"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ingrese NIT o DPI del cliente"
+        app:boxBackgroundMode="outline"
+        app:boxCornerRadiusTopStart="12dp"
+        app:boxCornerRadiusTopEnd="12dp"
+        app:boxCornerRadiusBottomStart="12dp"
+        app:boxCornerRadiusBottomEnd="12dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etNit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textCapCharacters" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btnConsultar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="CONSULTAR PUNTOS"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"
+        app:cornerRadius="12dp"
+        android:backgroundTint="#007BFF"/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardResultado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:visibility="gone"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:strokeWidth="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tvNombreCliente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nombre del Cliente"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#182B49"/>
+
+            <TextView
+                android:id="@+id/tvNitCliente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NIT: 123456-K"
+                android:textSize="14sp"
+                android:textColor="#888888"
+                android:layout_marginTop="4dp"/>
+
+            <TextView
+                android:id="@+id/tvPuntos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0 PTS"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                android:textColor="#007BFF"
+                android:layout_marginTop="16dp"/>
+
+            <TextView
+                android:id="@+id/tvEstadoRecompensas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Estado de recompensas"
+                android:textSize="14sp"
+                android:textColor="#28A745"
+                android:textAlignment="center"
+                android:layout_marginTop="12dp"/>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>
