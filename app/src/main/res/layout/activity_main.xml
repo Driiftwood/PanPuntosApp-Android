@@ -1,113 +1,216 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="24dp"
-    android:gravity="center_horizontal"
-    android:background="#F5F7FA">
+    android:fillViewport="true"
+    android:background="#F8FAFC">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="PAN, PUNTOS Y PREMIOS"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:textColor="#182B49"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="8dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Consulta de Puntos y Recompensas"
-        android:textSize="14sp"
-        android:textColor="#666666"
-        android:layout_marginBottom="32dp"/>
-
-    <com.google.android.material.textfield.TextInputLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Ingrese NIT o DPI del cliente"
-        app:boxBackgroundMode="outline"
-        app:boxCornerRadiusTopStart="12dp"
-        app:boxCornerRadiusTopEnd="12dp"
-        app:boxCornerRadiusBottomStart="12dp"
-        app:boxCornerRadiusBottomEnd="12dp">
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:gravity="center_horizontal">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etNit"
+        <!-- LOGO / HEADER ILUSTRATIVO -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="36dp"
+            app:cardElevation="0dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="#E2E8F0"
+            app:cardBackgroundColor="#FFFFFF">
+
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_gravity="center"
+                android:src="@android:drawable/ic_dialog_info"
+                app:tint="#0F172A"
+                tools:ignore="ContentDescription" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- TÍTULOS -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PAN, PUNTOS Y PREMIOS"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#0F172A"
+            android:letterSpacing="0.02"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Consulta de Puntos y Recompensas"
+            android:textSize="14sp"
+            android:textColor="#64748B"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="28dp" />
+
+        <!-- CAMPO DE BÚSQUEDA NIT / DPI -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilNit"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textCapCharacters" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:hint="Ingrese NIT o DPI del cliente"
+            app:startIconDrawable="@android:drawable/ic_menu_search"
+            app:endIconMode="clear_text"
+            app:boxCornerRadiusTopStart="16dp"
+            app:boxCornerRadiusTopEnd="16dp"
+            app:boxCornerRadiusBottomStart="16dp"
+            app:boxCornerRadiusBottomEnd="16dp"
+            app:boxStrokeColor="#2563EB"
+            app:hintTextColor="#2563EB">
 
-    <Button
-        android:id="@+id/btnConsultar"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:text="CONSULTAR PUNTOS"
-        android:textStyle="bold"
-        android:layout_marginTop="16dp"
-        app:cornerRadius="12dp"
-        android:backgroundTint="#007BFF"/>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etNit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapCharacters"
+                android:paddingVertical="16dp"
+                android:textSize="16sp"
+                android:textColor="#0F172A" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardResultado"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:visibility="gone"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="4dp"
-        app:strokeWidth="0dp">
+        <!-- BOTÓN CONSULTAR -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnConsultar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="CONSULTAR PUNTOS"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            app:cornerRadius="16dp"
+            android:backgroundTint="#2563EB"
+            app:elevation="2dp" />
 
-        <LinearLayout
+        <!-- INDICADOR DE CARGA (Oculto por defecto) -->
+        <ProgressBar
+            android:id="@+id/pbCarga"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:visibility="gone"
+            android:indeterminateTint="#2563EB" />
+
+        <!-- TARJETA DE RESULTADOS (TARJETA DE MEMBRESÍA) -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardResultado"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="20dp"
-            android:gravity="center">
+            android:layout_marginTop="24dp"
+            android:visibility="gone"
+            tools:visibility="visible"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="3dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="#E2E8F0"
+            app:cardBackgroundColor="#FFFFFF">
 
-            <TextView
-                android:id="@+id/tvNombreCliente"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nombre del Cliente"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="#182B49"/>
+                android:orientation="vertical"
+                android:padding="24dp"
+                android:gravity="center_horizontal">
 
-            <TextView
-                android:id="@+id/tvNitCliente"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="NIT: 123456-K"
-                android:textSize="14sp"
-                android:textColor="#888888"
-                android:layout_marginTop="4dp"/>
+                <!-- NOMBRE Y NIT DEL CLIENTE -->
+                <TextView
+                    android:id="@+id/tvNombreCliente"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Franklin Mejía"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#0F172A"
+                    android:textAlignment="center" />
 
-            <TextView
-                android:id="@+id/tvPuntos"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0 PTS"
-                android:textSize="36sp"
-                android:textStyle="bold"
-                android:textColor="#007BFF"
-                android:layout_marginTop="16dp"/>
+                <TextView
+                    android:id="@+id/tvNitCliente"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="NIT: 123456-K"
+                    android:textSize="13sp"
+                    android:textColor="#64748B"
+                    android:layout_marginTop="2dp" />
 
-            <TextView
-                android:id="@+id/tvEstadoRecompensas"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Estado de recompensas"
-                android:textSize="14sp"
-                android:textColor="#28A745"
-                android:textAlignment="center"
-                android:layout_marginTop="12dp"/>
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#F1F5F9"
+                    android:layout_marginVertical="16dp" />
 
-</LinearLayout>
+                <!-- SECCIÓN PUNTOS ACUMULADOS -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PUNTOS ACUMULADOS"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.1"
+                    android:textColor="#94A3B8" />
+
+                <TextView
+                    android:id="@+id/tvPuntos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="150 PTS"
+                    android:textSize="40sp"
+                    android:textStyle="bold"
+                    android:textColor="#2563EB"
+                    android:layout_marginTop="4dp" />
+
+                <!-- BARRA DE META DE PUNTOS -->
+                <ProgressBar
+                    android:id="@+id/pbMetaPuntos"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:progress="75"
+                    android:max="100"
+                    android:progressDrawable="@android:drawable/progress_horizontal"
+                    android:progressTint="#2563EB"
+                    android:progressBackgroundTint="#E2E8F0"
+                    android:layout_marginTop="12dp" />
+
+                <!-- ESTADO DE RECOMPENSAS -->
+                <TextView
+                    android:id="@+id/tvEstadoRecompensas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🎉 ¡Tienes suficiente para canjear un premio!"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:textColor="#16A34A"
+                    android:textAlignment="center"
+                    android:layout_marginTop="12dp" />
+
+                <!-- BOTÓN ACCIÓN DE CANJE -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnCanjear"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="CANJEAR PREMIO"
+                    android:textColor="#2563EB"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="16dp"
+                    app:strokeColor="#2563EB"
+                    app:cornerRadius="12dp" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+</ScrollView>
